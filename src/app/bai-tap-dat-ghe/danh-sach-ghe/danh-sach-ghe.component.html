@@ -1,0 +1,36 @@
+<div class="container">
+    <h1 class="text-center ">ĐẶT VÉ XE BUS HÃNG CYBERSOFT</h1>
+    <div class="row ">
+        <div class="col-6 text-center">
+            <h3>Ghế xe bus</h3>
+            <ng-container *ngFor="let item of mangGhe;let stt=index">
+                <app-item-ghe [ghe]="item" (eventchonghe)="Muave($event,item)">
+                </app-item-ghe>
+                <br *ngIf="stt % 4===3">
+            </ng-container>
+        </div>
+        <div class="col-6 ">
+            <h3 class="text-center">Danh sách ghế xe bus({{soghe}})</h3>
+            <div class="d-flex justify-content-around">
+                <ng-container *ngIf="mangchonghe && mangchonghe.length >0; else thanhcong">
+                    <div>
+                        <div class="hienthi my-2 " *ngFor="let items of mangchonghe">
+                            <span>Ghế: {{items.TenGhe}} {{items.Gia}}$ </span>
+                            <button class="btn btn-danger ml-2" (click)="huyve(items.SoGhe)"> huy</button>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-info my-2 " (click)="datve()"> Đặt vé</button> <span>=> Thành tiền {{gia}}</span>
+                    </div>
+                </ng-container>
+            </div>
+            <div *ngIf="show_dat_ve">
+                <h1>Bạn đã đặt {{soghe}} vé thành công với {{gia}}$</h1>
+            </div>
+            <div *ngIf="show_ghe_da_mua">
+                <p>Xin thông cảm ghế đã có người đặt mua từ trước xin mời bạn chọn ghế khắc</p>
+            </div>
+
+        </div>
+    </div>
+</div>
